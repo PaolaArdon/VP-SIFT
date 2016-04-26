@@ -32,32 +32,6 @@ im2 =  imcrop(im1, [a1 a2 a3 a4]);
 figure;hold on;
 imshow(im2);
 
-% Creating the reference image of size 1000 x 500 in the center of the
-% original image
-[m,n,c] = size(im1);
-row_c = floor(m/2);
-col_c = floor(n/2);
-rect1 = [500,950];
-a1 =  floor(col_c - rect1(2)/2)+1;
-a2 =  floor(row_c - rect1(1)/2)+1;
-a3 = 950-1;
-a4 = 500-1;
-imx =  imcrop(im1, [a1 a2 a3 a4]);
-%figure();imshow(imx);
-
-% Creating the reference image of size 750 x 700 in the center of the
-% original image
-[m,n,c] = size(im1);
-row_c = floor(m/2);
-col_c = floor(n/2);
-rect1 = [700,750];
-a1 =  floor(col_c - rect1(2)/2)+1;
-a2 =  floor(row_c - rect1(1)/2)+1;
-a3 = 750-1;
-a4 = 700-1;
-imy =  imcrop(im1, [a1 a2 a3 a4]);
-%figure();imshow(imy);
-
 %% Generating zoom sequence
 smallImg =im1; largeImg =im2;
 [ sequenceToHomographies ] = zoom( smallImg,largeImg);
