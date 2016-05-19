@@ -1,0 +1,42 @@
+close all, clear all 
+
+Im_Init = imread('Image_base_050.jpg');
+ 
+ 
+ 
+ Window = Im_Init(2000:3000, 1750:4000, :);
+ 
+ %imshow(Im_Init);
+ 
+ Index = 0;
+ 
+ 
+ 
+ for Angle = -45 : 90/17 : 45
+     
+     
+     
+     
+     Index = Index + 1;
+     Window_Rot = imrotate(Window, Angle,'crop');
+     Im_Rot = Window_Rot(250:750, 750:1500, :);
+     imshow(Im_Rot);figure
+     
+     Im_Rot1  = imnoise(im, 'gaussian', 0, (3/max_i)^2 );
+     Im_Rot2  = imnoise(im, 'gaussian', 0, (6/max_i)^2 );
+     Im_Rot3  = imnoise(im, 'gaussian', 0, (18/max_i)^2 );
+     
+%      if( Index < 10 )
+%         imwrite(Im_Rot,['SEQUENCE3/Image_0',num2str(Index),'a.png']);
+%         imwrite(im_n1,['SEQUENCE3/Image_0',num2str(Index),'b.png']);
+%         imwrite(im_n2,['SEQUENCE3/Image_0',num2str(Index),'c.png']);
+%         imwrite(im_n3,['SEQUENCE3/Image_0',num2str(Index),'d.png']);
+%     
+%     else
+%         imwrite(im,['SEQUENCE3/Image_',num2str(Index),'a.png']);
+%         imwrite(im_n1,['SEQUENCE3/Image_',num2str(Index),'b.png']);
+%         imwrite(im_n2,['SEQUENCE3/Image_',num2str(Index),'c.png']);
+%         imwrite(im_n3,['SEQUENCE3/Image_',num2str(Index),'d.png']);
+%     end
+     
+ end

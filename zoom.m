@@ -1,4 +1,4 @@
-function [ sequenceToHomographies ] = zoom( smallImg,largeImg )
+function [ Sequence2Homographies ] = zoom( smallImg,largeImg )
 %UNTITLED Summary of this function goes here
 %SEQUENCE 2 (zoom): This sequence has to be composed of a synthetic
 % set of images in which, for every image, the distance between the camera
@@ -13,8 +13,8 @@ path = [pwd '/SEQUENCE2'];
 if exist(path) == 0
     mkdir(path);
 end
-sequenceToHomographies = struct();
-save([path '/sequenceToHomographies.mat']);
+Sequence2Homographies = struct();
+save([path '/sequence2Homographies.mat']);
 
 % Save the reference image
 imwrite(largeImg, [path '/Image_' num2str(00) 'a' '.png']);
@@ -56,7 +56,7 @@ for i = 1: 9
     imwrite(im_d, [path '/Image_' num2str(i) 'd' '.png']);
     
     % Creating the corresponding homography matrix
-    sequenceToHomographies(i).H = inv([1 0 -750/2; 0 1 -500/2; 0 0 1]) * [zoom 0 0; 0 zoom 0; 0 0 1] * [1 0 -750/2; 0 1 -500/2; 0 0 1];
+    Sequence2Homographies(i).H = inv([1 0 -750/2; 0 1 -500/2; 0 0 1]) * [zoom 0 0; 0 zoom 0; 0 0 1] * [1 0 -750/2; 0 1 -500/2; 0 0 1];
     
     zoom = zoom + 0.05;
 end
