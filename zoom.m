@@ -13,7 +13,6 @@ path = [pwd '/SEQUENCE2'];
 if exist(path) == 0
     mkdir(path);
 end
-Sequence2Homographies = struct();
 save([path '/sequence2Homographies.mat']);
 
 % Save the reference image
@@ -56,10 +55,13 @@ for i = 1: 9
     imwrite(im_d, [path '/Image_' num2str(i) 'd' '.png']);
     
     % Creating the corresponding homography matrix
-    Sequence2Homographies(i).H = inv([1 0 -750/2; 0 1 -500/2; 0 0 1]) * [zoom 0 0; 0 zoom 0; 0 0 1] * [1 0 -750/2; 0 1 -500/2; 0 0 1];
+    Homography = inv([1 0 -750/2; 0 1 -500/2; 0 0 1]) * [zoom 0 0; 0 zoom 0; 0 0 1] * [1 0 -750/2; 0 1 -500/2; 0 0 1];
     
+    Sequence2Homographies(i) = struct('H', Homography)
     zoom = zoom + 0.05;
 end
+disp(Sequence2Homographies(i).H)
+disp(path)
 save([path '/Sequence2Homographies.mat']);
 
 
